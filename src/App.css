@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Fira Code;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button:hover {
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: column;
+}
+
+.button {
+  display: block;
+  border: 1px solid #464545;
+  background-color: white;
+  color: #464545;
+  padding: 3px;
+  border-radius: 4px;
+  margin: 10px;
+}
+
+.button:hover {
+  background-color: #4aa3de;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.button:active {
+  transition: all 0.05s linear;
+  transform: scale(0.9);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btnCon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btnConFirst {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  outline: none;
+}
+
+.navbar{
+  display: flex;
+  width: 100%;
+  background-color: #464545;
 }
