@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "./store/counterSlice";
 import { addTodo, deleteTodo } from "./store/todoSlice";
+import TrashBox from "./assets/icons/bin.png";
 import "./App.css";
 
 const App = () => {
@@ -82,19 +83,19 @@ const App = () => {
         )}
         {datas?.map((v, i) => {
           return (
-            <div key={v.id}>
-              <div className="btnCon">
-                <p>{i + 1} - </p>
+            <div key={v.id} className="content">
+              <div>
+                <p>{i + 1}</p>
                 <p>{v.title}</p>
-                <p>
-                  <button
-                    className="button"
-                    onClick={() => dispatch(deleteTodo(v.id))}
-                  >
-                    delete
-                  </button>
-                </p>
               </div>
+              <p>
+                <button
+                  className="button deleteBtn"
+                  onClick={() => dispatch(deleteTodo(v.id))}
+                >
+                  <img style={{width:"25px"}} src={TrashBox} />
+                </button>
+              </p>
             </div>
           );
         })}

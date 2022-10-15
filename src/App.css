@@ -27,7 +27,6 @@ body {
   color: #464545;
   padding: 3px;
   border-radius: 4px;
-  margin: 10px;
 }
 
 .button:hover {
@@ -55,8 +54,31 @@ input {
   outline: none;
 }
 
-.navbar{
+.navbar {
   display: flex;
   width: 100%;
+  padding: 5px;
+  justify-content: space-between;
   background-color: #464545;
+  margin-bottom: 30px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+  color: white;
+  background-color: #464545;
+  margin: 5px 0;
+  padding: 4px;
+   border-radius: 4px;
+}
+
+.content:hover .deleteBtn{
+  display: block;
+}
+
+.deleteBtn{
+  display: none;
 }
