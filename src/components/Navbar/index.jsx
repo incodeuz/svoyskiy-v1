@@ -10,21 +10,17 @@ const Navbar = () => {
         <Link className="link" to="/">
           <button className="button">Home</button>
         </Link>
-        <div className="btnCon">
-          <Link className="link" to="counter">
-            <button className="button">Counter</button>
-          </Link>
-          <Link className="link" to="todo">
-            <button
-              style={{
-                marginLeft: "10px ",
-              }}
-              className="button"
-            >
-              Todo App
-            </button>
-          </Link>
-        </div>
+
+        <Link className="link" to="todo">
+          <button
+            style={{
+              marginLeft: "10px ",
+            }}
+            className="button"
+          >
+            Todo App
+          </button>
+        </Link>
       </div>
       <Outlet />
     </>
