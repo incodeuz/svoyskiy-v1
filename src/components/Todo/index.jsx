@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo, deleteTodo } from "../../store/todoSlice";
+import { addTodo, deleteTodo, updateTodo } from "../../store/todoSlice";
 import TrashBox from "../../assets/icons/bin.png";
 import Edit from "../../assets/icons/pencil.png";
 import Check from "../../assets/icons/accept.png";
@@ -11,6 +11,7 @@ const Todo = () => {
     btn1: false,
     id: null,
   });
+  const [updatedTitle, setUpdatedTitle] = useState("");
   const [data, setData] = useState("");
   const dispatch = useDispatch();
   const datas = useSelector((state) => state.todo.data);
@@ -18,7 +19,7 @@ const Todo = () => {
   const addTodoBla = (data) => {
     setData("");
     if (data.length > 0) dispatch(addTodo(data));
-  }; 
+  };
 
   return (
     <div className="container">
@@ -86,7 +87,15 @@ const Todo = () => {
                       <img
                         style={{ width: "25px" }}
                         src={Check}
-                        onClick={() => setSettings({ btn1: false, id: v.id })}
+                        onClick={() => {
+                          setSettings({ btn1: false, id: v.id });
+                          dispatch(
+                            updateTodo({
+                              id: v.id,
+                              title: updatedTitle,
+                            })
+                          );
+                        }}
                       />
                     ) : (
                       <img
@@ -106,6 +115,7 @@ const Todo = () => {
                   className="btnCon"
                 >
                   <input
+                    onChange={(e) => setUpdatedTitle(e.target.value)}
                     className="button"
                     type="text"
                     placeholder="edit title"
