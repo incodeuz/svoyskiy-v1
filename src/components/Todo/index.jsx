@@ -3,9 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { addTodo, deleteTodo } from "../../store/todoSlice";
 import TrashBox from "../../assets/icons/bin.png";
 import Edit from "../../assets/icons/pencil.png";
+import Check from "../../assets/icons/accept.png";
 import "../../App.css";
 
 const Todo = () => {
+  const [settings, setSettings] = useState({
+    btn1: false,
+    id: null,
+  });
   const [data, setData] = useState("");
   const dispatch = useDispatch();
   const datas = useSelector((state) => state.todo.data);
@@ -13,28 +18,17 @@ const Todo = () => {
   const addTodoBla = (data) => {
     setData("");
     if (data.length > 0) dispatch(addTodo(data));
-  };
+  }; 
 
   return (
     <div className="container">
       <div className="container">
         <div className="container btnConFirst">
-          {/* {datas.length > 1 && (
-              <div className="btnCon">
-                <input
-                  className="button"
-                  type="text"
-                  placeholder="search todos"
-                />
-                <select className="button">
-                  <option value={"id"}>ID</option>
-                  <option value={"Title"}>Title</option>
-                </select>
-                <button className="button">Search Todo</button>
-              </div>
-            )} */}
           <div className="btnCon debba">
             <input
+              style={{
+                marginRight: "10px",
+              }}
               className="button"
               type="text"
               placeholder="add todo"
@@ -50,30 +44,78 @@ const Todo = () => {
         {datas?.map((v, i) => {
           return (
             <div key={v.id} className="content">
-              <div>
-                <p>{i + 1}</p>
-                <p>{v.title}</p>
-              </div>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <p
+                    style={{
+                      fontSize: "10px",
+                      padding: "0 3px",
+                      borderRadius: "4px",
+                      background: "white",
+                      color: "#424242",
+                      width: "fit-content",
+                    }}
+                  >
+                    {i + 1}
+                  </p>
+                  <p>{v.title}</p>
+                </div>
 
-              <div className="btnCon">
-                <button
-                  className="deleteBtn"
-                  onClick={() => dispatch(deleteTodo(v.id))}
-                >
-                  <img style={{ width: "25px" }} src={TrashBox} />
-                </button>
-                <button
-                  className="deleteBtn"
+                <div className="btnCon">
+                  <button
+                    className="deleteBtn"
+                    onClick={() => dispatch(deleteTodo(v.id))}
+                  >
+                    <img style={{ width: "25px" }} src={TrashBox} />
+                  </button>
+                  <button
+                    className="deleteBtn"
+                    style={{
+                      background: "#424242",
+                      marginLeft: "6px",
+                    }}
+                  >
+                    {settings.btn1 && settings.id === v.id ? (
+                      <img
+                        style={{ width: "25px" }}
+                        src={Check}
+                        onClick={() => setSettings({ btn1: false, id: v.id })}
+                      />
+                    ) : (
+                      <img
+                        style={{ width: "25px" }}
+                        src={Edit}
+                        onClick={() => setSettings({ btn1: true, id: v.id })}
+                      />
+                    )}
+                  </button>
+                </div>
+              </div>
+              {settings.btn1 && settings.id === v.id && (
+                <div
                   style={{
-                    background: "#424242",
-                    marginLeft: "6px",
+                    marginTop: "10px",
                   }}
+                  className="btnCon"
                 >
-                  <img style={{ width: "25px" }} src={Edit} />
-                </button>
-              </div>
-
-              <input type="text" placeholder="edit title" />
+                  <input
+                    className="button"
+                    type="text"
+                    placeholder="edit title"
+                    style={{
+                      color: "#424242",
+                      marginRight: "5px",
+                    }}
+                  />
+                </div>
+              )}
             </div>
           );
         })}

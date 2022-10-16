@@ -17,11 +17,11 @@ const todoSlice = createSlice({
       state.data = state.data.filter((value) => value.id !== action.payload);
     },
     updateTodo: (state, action) => {
-      state.data = state.data.map((value) =>
-        value.id === action.payload.id
-          ? { ...value, title: action.payload.title }
-          : value
-      );
+      state.data.map((value) => {
+        if (value.id === action.payload.id) {
+          value.title = action.payload.title;
+        }
+      });
     },
   },
 });
