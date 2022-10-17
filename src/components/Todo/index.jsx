@@ -115,7 +115,6 @@ const Todo = () => {
                   className="btnCon"
                 >
                   <input
-                    value={v.title}
                     onChange={(e) => setUpdatedTitle(e.target.value)}
                     className="button"
                     type="text"
